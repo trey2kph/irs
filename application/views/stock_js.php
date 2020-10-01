@@ -1,0 +1,3 @@
+function updateStock(){searchitem=$('#searchitem').val();$.ajax({<?php
+$pagenum=$_SERVER['HTTP_REFERER'];$pagenum=explode("/",preg_replace('#^https?://#','',$pagenum));$pagenumber=$pagenum[5];?><?php if($pagenumber):?>url:"<?php echo WEB; ?>/ajax/updatestock/page/<?php echo $pagenumber; ?>",<?php else:?>url:"<?php echo WEB; ?>/ajax/updatestock",<?php endif;?>data:"searchitem="+searchitem,type:"POST",complete:function(){$("#loading").hide()},success:function(data){$("#stock_list").html(data)}})}
+setInterval("updateStock()",60000)
